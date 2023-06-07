@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('alamat');
             $table->string('indikator');
-            $table->string('image');
-            $table->string('pdf');
+            $table->text('image');
+            $table->text('pdf');
             $table->timestamps();
         });
     }
@@ -28,8 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('evidences', function (Blueprint $table) {
+        Schema::table('evidence', function (Blueprint $table) {
             $table->dropForeign(['document_id']);
         });
-        Schema::dropIfExists('evidence');    }
+        Schema::dropIfExists('evidence');
+
+    }
 };

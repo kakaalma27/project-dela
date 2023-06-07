@@ -49,9 +49,11 @@ class EvidenceController extends Controller
         }
     
         if ($request->hasFile('pdf')) {
-            $evidence->pdf = $request->file('pdf')->getClientOriginalExtension();
+            $evidence->pdf = $request->file('pdf')->getClientOriginalName();
             $request->file('pdf')->storeAs('assets', $evidence->pdf, 'public');
         }
+        
+        
 
         $evidence->save();
         $user = Auth::user();
@@ -115,4 +117,21 @@ class EvidenceController extends Controller
         return redirect()->route('evidence.index')
                         ->with('success','Product deleted successfully');
     }
+
+
+public function downloadImage($evidence)
+{
+    $evidence = Evidence::find($evidence);
+    $imagePath = public_path('/storage/assets/' . $evidence->image);
+
+    return response()->download($imagePath);
+}
+
+public function downloadPDF($evidence)
+{
+    $evidence = Evidence::find($evidence);
+    $pdfPath = public_path('/storage/assets/' . $evidence->pdf);
+
+    return response()->download($pdfPath);
+}
 }

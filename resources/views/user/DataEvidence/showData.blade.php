@@ -31,16 +31,9 @@
                             <img src="{{ asset('/storage/uploads/'.$st->image) }}" width="70px"> | 
                             <a href="{{ route('evidence.index'),$st->pdf_file }}">view</a>                
                         </td>
-                        
-                        {{-- <td>
-                        <form action="{{ route('evidence.destroy',$st->id) }}" method="POST">
 
-                            <a class="btn btn-info" href="{{ route('evidence.show',$st->id) }}">Terima</a>
-                            <a class="btn btn-primary" href="{{ route('evidence.edit',$st->id) }}">Tolak</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">tidak valid</button>
-                        </form>
+                        {{-- <td>
+                            <button>a</button>
                         </td> --}}
                     </tr>
                     @endforeach

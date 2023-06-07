@@ -4,10 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Bootstrap demo</title>
+    <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    
+    <!-- CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <link href='/style/nav.css' rel='stylesheet'>
 	<link href='/style/card.css' rel='stylesheet'>
 	<link href='/style/piechart.css' rel='stylesheet'>
@@ -15,9 +21,9 @@
   </head>
   <body>
 	<section id="sidebar">
-		<a href="#" class="brand">
+		<a href="{{ route('admin.home') }}" class="brand">
 			<i class='bx bxs-smile'></i>
-			<span class="text">spbe</span>
+			<span class="text">Kominfo</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="{{ request()->is('admin/dashboard*') ? 'active' : '' }}">
@@ -26,12 +32,12 @@
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li class="{{ request()->is('admin/evidence*') ? 'active' : '' }}">
+			{{-- <li class="{{ request()->is('admin/evidence*') ? 'active' : '' }}">
 				<a href="{{ route('evidence.index') }}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Form Evidence</span>					
 				</a>
-			</li>
+			</li> --}}
 			<li class="{{ request()->is('admin/verif*') ? 'active' : '' }}">
 				<a href="{{ route('admin.verif') }}">
 					<i class='bx bxs-data'></i>
@@ -47,7 +53,6 @@
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>
-	
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 					@csrf
 				</form>
@@ -72,9 +77,9 @@
                 {{ Auth::user()->name }}
 			</a>
 		</nav>
-		<div class="main">
-			@yield("main")
-		</div>
+					<div class="main">
+						@yield('main')
+					</div>
 
 
 	</section>

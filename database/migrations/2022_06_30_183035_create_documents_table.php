@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evidence_id')->nullable()->constrained('evidences')->onDelete('cascade');
-            $table->string('user_id');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->boolean('status')->default(false);
             $table->boolean('pending')->default(false);
             $table->boolean('invalid')->default(false);
@@ -28,7 +27,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->dropForeign(['evidence_id']);
+            $table->dropForeign(['user_id']);
         });
-        Schema::dropIfExists('documents');    }
+        Schema::dropIfExists('documents');
+
+    }
 };

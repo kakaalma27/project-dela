@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'From Evidence')
 @section('main')
 <div class="row">
         <div class="col-lg-12">

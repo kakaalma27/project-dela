@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EvidenceController;
-use App\Http\Controllers\UserEvidenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +22,6 @@ use App\Http\Controllers\UserEvidenceController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Auth::routes();
 Route::middleware(['auth','user-role:user'])->group(function()
@@ -44,5 +42,8 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('projects/toggle', [ProjectController::class, 'toggle'])->name('projects.toggle');
     Route::get('projects/pending', [ProjectController::class, 'pending'])->name('projects.pending');
     Route::get('projects/invalid', [ProjectController::class, 'invalid'])->name('projects.invalid');
-
+    Route::get('/evidence/{evidence}/download/image', [EvidenceController::class, 'downloadImage'])->name('evidence.download.image');
+    Route::get('/evidence/{evidence}/download/pdf', [EvidenceController::class, 'downloadPDF'])->name('evidence.download.pdf');
+    
 });
+

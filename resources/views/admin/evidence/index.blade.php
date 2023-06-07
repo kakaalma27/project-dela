@@ -14,20 +14,20 @@
                 @endif                
                 <table class="table table-bordered">
                     <tr>
-                        <th>No Id</th>
-                        <th>Nama Dinas</th>
-                        <th>Alamat</th>
-                        <th>Indikator</th>
-                        <th>Evidence</th>
-                        <th width="280px">Aksi</th>
+                        <th style="background-color: var(--bs-dark-text); var(--bs-body-bg);">No Id</th>
+                        <th color: var(--bs-body-bg);>Nama Dinas</th>
+                        <th color: var(--bs-body-bg);>Alamat</th>
+                        <th color: var(--bs-body-bg);>Indikator</th>
+                        <th color: var(--bs-body-bg);>Evidence</th>
+                        <th width="280px" color=var(--light)>Aksi</th>
                     </tr>
                     @foreach ($Evidence as $st)
                     <tr>
-                        <td>{{ $st->id }}</td>
-                        <td>{{ $st->name }}</td>
-                        <td>{{ $st->alamat }}</td>
-                        <td>{{ $st->indikator }}</td>
-                        <td>
+                        <td class="text-primary">{{ $st->id }}</td>
+                        <td class="text-primary">{{ $st->name }}</td>
+                        <td class="text-primary">{{ $st->alamat }}</td>
+                        <td class="text-primary">{{ $st->indikator }}</td>
+                        <td class="text-primary">
                             <img src="{{ asset('/storage/uploads/'.$st->image) }}" width="70px"> | 
                             <a href="{{ route('evidence.index'),$st->pdf_file }}">view</a>                
                         </td>

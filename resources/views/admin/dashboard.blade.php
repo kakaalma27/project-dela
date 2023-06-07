@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title','Dashboard')
 @section('main')
 <div class="container">
 
@@ -51,9 +52,7 @@
             chartArea: {
                 width: '70%', 
                 height: '90%',
-                borderRadius: 20
-            },
-            borderRadius: 20
+            }
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 

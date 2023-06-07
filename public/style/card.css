@@ -4,6 +4,8 @@
 
 
 :root {
+		--bs-light-text-emphasis: #007bff;
+	  
     --poppins: 'Poppins', sans-serif;
 	--lato: 'Lato', sans-serif;
 
@@ -103,11 +105,3 @@ letter-spacing: 3px;
 text-align: center;
 }
 
-.card{    
-    background: var(--light);
-}
-.table{
-	font-family: var(--lato);
-	transition: .3s ease;
-    
-}
