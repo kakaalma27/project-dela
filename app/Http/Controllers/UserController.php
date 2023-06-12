@@ -11,10 +11,24 @@ class UserController extends Controller
 {
     public function showData()
     {
-        $data['Evidence'] = Evidence::orderBy('id','desc')->paginate(5);
+        $userId = auth()->id();
+        $data['Evidence'] = Evidence::whereHas('document', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->orderBy('id', 'desc')->paginate(5);
+        $validDocuments = Document::where('status', 1)->count();
+        $pendingDocuments = Document::where('pending', 1)->count();
+        $invalidDocuments = Document::where('invalid', 1)->count();
         
-        return view('user.DataEvidence.indexData', $data);
+        $result = [
+            'validDocuments' => $validDocuments,
+            'pendingDocuments' => $pendingDocuments,
+            'invalidDocuments' => $invalidDocuments
+        ];
+        
+        return view('user.DataEvidence.indexData', compact('data', 'result'));
     }
+    
+    
 
     public function createData()
     {
@@ -28,14 +42,16 @@ class UserController extends Controller
         'name' => 'required',
         'alamat' => 'required',
         'indikator' => 'required',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'pdf' => 'required|mimes:pdf|max:2048',
+        'domain' => 'required',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'pdf' => 'nullable|mimes:pdf|max:2048',
     ]);
 
     $evidence = new Evidence;
     $evidence->name = $request->name;
     $evidence->alamat = $request->alamat;
     $evidence->indikator = $request->indikator;
+    $evidence->domain = $request->domain;
 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
@@ -43,11 +59,14 @@ class UserController extends Controller
         $image->storeAs('assets', $imageFileName, 'public');
         $evidence->image = $imageFileName;
     }
-
-        if ($request->hasFile('pdf')) {
-            $evidence->pdf = $request->file('pdf')->getClientOriginalExtension();
-            $request->file('pdf')->storeAs('assets', $evidence->pdf, 'public');
-        }
+    
+    if ($request->hasFile('pdf')) {
+        $pdf = $request->file('pdf');
+        $pdfFileName = time() . '_' . $pdf->getClientOriginalName();
+        $pdf->storeAs('assets', $pdfFileName, 'public');
+        $evidence->pdf = $pdfFileName;
+    }
+    
 
     $evidence->save();
     $user = Auth::user();

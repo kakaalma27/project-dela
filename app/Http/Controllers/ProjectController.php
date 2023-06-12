@@ -10,6 +10,7 @@ class ProjectController extends Controller
 {
     public function verif()
     {
+        
         $Evidence = Evidence::all();
         $projects = Document::all();
         return view('admin.verif', compact('Evidence', 'projects'));

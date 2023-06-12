@@ -11,6 +11,7 @@ class Evidence extends Model
         'name',
         'alamat',
         'indikator',
+        'domain',
         'image',
         'pdf',
         'status'

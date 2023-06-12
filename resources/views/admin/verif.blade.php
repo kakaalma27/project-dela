@@ -12,7 +12,7 @@
                     <th>No Id</th>
                     <th>Nama Dinas</th>
                     <th>Alamat</th>
-                    <th>Indikator</th>
+                    <th style="width: 350px;">Indikator</th>
                     <th>Evidence</th>
                     <th>Action</th>
                 </tr>

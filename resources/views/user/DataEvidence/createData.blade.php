@@ -29,56 +29,20 @@
                         <input type="text" class="form-control" name="alamat" placeholder="Alamat">
                     </div>
                     <div class="mb-3">
-                        <label  class="form-label">Indikator</label>
-                        <select class="form-select" name="indikator">
-                            <option selected value ="male">Male</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-                            <option value ="female">Female</option>
-
-                        </select>
+                        <div class="row align-items-start">
+                        <div class="col-md-4">
+                          <select id="domainSelect" name="domain" class="form-select"  onchange="updateIndicatorOptions()">
+                            <option value="">Pilih Domain</option>
+                            <option value="domain1">DOMAIN 1. Kebijakan Internal SPBE</option>
+                            <option value="domain2">DOMAIN 2. Tata Kelola SPBE</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <select id="indicatorSelect" name="indikator" class="form-select">
+                            <option value="">Pilih Indikator</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                     <div class="mb-3">
                         <strong>Image</strong>
@@ -98,3 +62,27 @@
     </div>
 </div>      
 @endsection
+<script>
+  function updateIndicatorOptions() {
+    var domainSelect = document.getElementById("domainSelect");
+    var indicatorSelect = document.getElementById("indicatorSelect");
+    indicatorSelect.innerHTML = ""; // Hapus semua opsi indikator sebelumnya
+    
+    if (domainSelect.value === "domain1") {
+      var option1 = document.createElement("option");
+      option1.text = "Indikator 1 : Tingkat Kematangan Kebijakan Internal Arsitektur SPBE Instansi Pusat/Pemerintah Daerah";
+      option1.value = "Indikator 1 : Tingkat Kematangan Kebijakan Internal Arsitektur SPBE Instansi Pusat/Pemerintah Daerah";
+      indicatorSelect.add(option1);
+
+      var option2 = document.createElement("option");
+      option2.text = "Tingkat Kematangan 2";
+      option2.value = "indicator2";
+      indicatorSelect.add(option2);
+    } else if (domainSelect.value === "domain2") {
+      var optionX = document.createElement("option");
+      optionX.text = "Indikator X";
+      optionX.value = "indicatorX";
+      indicatorSelect.add(optionX);
+    }
+  }
+</script>

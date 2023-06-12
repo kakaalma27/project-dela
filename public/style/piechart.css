@@ -1,11 +1,29 @@
-.chart {
-  width: 100%;
-  max-width: 800px; 
-  margin: 0 auto; 
-  padding: 50px;
-  border-radius: 20px;
+.pie-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
 }
-.ltr{
-  border-radius: 20px;
+.card-pie{
+margin-top: 50px;
+margin-bottom: auto;
+border-radius: 20px;
+box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.751);
+padding: 20px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+cursor: pointer;
+transition: transform 0.3s ease-in-out;
+background: var(--light);
+}
+.card-pie:hover{
+    transform: scale(1.08);
+
+}
+.card-body-pie{
+margin-top: 50px;
+margin-bottom: auto;
 
 }

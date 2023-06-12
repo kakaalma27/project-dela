@@ -31,8 +31,14 @@
                 <h2 class="topic">Invalid Document</h2>
             </div>
         </div>
-</div>
-        <div id="piechart" class="chart"></div>
+    </div>
+    <div class="pie-container">
+        <div class="card-pie">
+            <div class="card-body-pie mt-5">
+                <div id="piechart" class="chart"></div>
+            </div>
+        </div>
+    </div>
 
 </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -43,16 +49,15 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable({{ Js::from($result) }});
-
         var options = {
-            fontSize: 16,
-            width: '80%', 
-            height: '80%',
-            borderRadius: 20,
+            fontSize: 18,
+            width: '100%', 
+            height: '100%',
+            backgroundColor: 'transparent',
             chartArea: {
-                width: '70%', 
-                height: '90%',
-            }
+                width: '100%', 
+                height: '100%',
+            },
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 

@@ -43,15 +43,15 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable({{ Js::from($result) }});
-
+        console.log($result),
         var options = {
             fontSize: 16,
-            width: '80%', 
-            height: '80%',
+            width: '100%', 
+            height: '100%',
             borderRadius: 20,
             chartArea: {
-                width: '70%', 
-                height: '90%',
+                width: '100%', 
+                height: '100%',
             }
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
