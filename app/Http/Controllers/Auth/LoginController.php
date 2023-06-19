@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -50,6 +51,8 @@ class LoginController extends Controller
      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
+            Session::flash('success', 'Login berhasil.');
+
             if (auth()->user()->role == 'admin') 
             {
               return redirect()->route('admin.home');
@@ -58,12 +61,12 @@ class LoginController extends Controller
             {
               return redirect()->route('home');
             }
+            
         }
         else
         {
-            return redirect()
-            ->route('login')
-            ->with('error','Incorrect email or password!.');
+            Session::flash('error', 'Email atau password tidak cocok.');
+            return redirect()->route('login');
         }
     }
 }

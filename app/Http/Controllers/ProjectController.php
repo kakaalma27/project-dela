@@ -17,9 +17,8 @@ class ProjectController extends Controller
     }
     
 
-    public function toggle(Request $request) {
+    public function status(Request $request) {
         $project = Document::find($request->project_id);
-    
         if ($project->status == 0) {
             $project->status = 1;
         } else {

@@ -1,9 +1,18 @@
 @extends('layouts.user')
-@section('title', 'Dashboard')
+@section('title','Dashboard')
 @section('main')
 <div class="container">
+    <div class="card-suss">
+        <div class="card-body-suss">
+            @if(session('success'))
+                <div id="notification" class="notification">
+                    <label class="sus">{{ session('success') }} {{ Auth::user()->name }}</label>
+                </div>
+            @endif
+        </div>
+    </div>
 
-<div class="box-container">
+<div class="box-container mt-3">
          <div class="box box1">
             <div class="text">
                 <h2 class="topic-heading">{{ $totalDocuments }}</h2>
@@ -31,15 +40,14 @@
                 <h2 class="topic">Invalid Document</h2>
             </div>
         </div>
-    </div>
-    <div class="pie-container">
-        <div class="card-pie">
-            <div class="card-body-pie mt-5">
-                <div id="piechart" class="chart"></div>
-            </div>
+</div>
+<div class="pie-container mt-3">
+    <div class="card-pie">
+        <div class="card-body-pie">
+            <div id="piechart" class="chart"></div>
         </div>
     </div>
-
+</div>
 </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -50,19 +58,31 @@
 
         var data = google.visualization.arrayToDataTable({{ Js::from($result) }});
         var options = {
-            fontSize: 18,
+            fontSize: 16,
             width: '100%', 
             height: '100%',
-            backgroundColor: 'transparent',
+            borderRadius: 20,
             chartArea: {
                 width: '100%', 
                 height: '100%',
+                color: '#777',
             },
+            backgroundColor: {
+        fill: 'transparent'
+    }
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       }
     </script>
-
+    <script>
+        var notification = document.getElementById('notification');
+        function closeNotification() {
+            notification.style.display = 'none';
+        }
+        window.onload = function() {
+            setTimeout(closeNotification, 5000);
+        }
+    </script>
 @endsection

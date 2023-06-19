@@ -25,10 +25,7 @@ class User extends Authenticatable
         'password',
         'role'
     ];
-    public function evidences()
-    {
-        return $this->hasMany(Evidence::class);
-    }
+  
     /**
      * The attributes that should be hidden for serialization.
      *

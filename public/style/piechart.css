@@ -3,10 +3,10 @@
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 30px;
 }
 .card-pie{
-margin-top: 50px;
+margin-top: 30px;
 margin-bottom: auto;
 border-radius: 20px;
 box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.751);
@@ -23,7 +23,34 @@ background: var(--light);
 
 }
 .card-body-pie{
-margin-top: 50px;
+margin-top: 30px;
 margin-bottom: auto;
+}
 
+.card-suss{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.card-body-suss{
+top: 50px;
+bottom: 50px;
+width: 20%;
+height: 10%;
+border-radius: 20px;
+box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.751);
+display: flex;
+align-items: center;
+justify-content: space-around;
+cursor: pointer;
+transition: transform 0.3s ease-in-out;
+background: var(--light);
+}
+.card-body-suss:hover{
+    transform: scale(1.08);
+}
+.sus{
+    font-size: 20px;
 }

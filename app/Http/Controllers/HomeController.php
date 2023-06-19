@@ -21,6 +21,11 @@ class HomeController extends Controller
         
     }
 
+    public function welcome()
+    {
+        return view('auth.login');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -36,7 +41,7 @@ class HomeController extends Controller
             $validDocuments = Document::where('status', 1)->where('user_id', $user_id)->count();
             $pendingDocuments = Document::where('pending', 1)->where('user_id', $user_id)->count();
             $invalidDocuments = Document::where('invalid', 1)->where('user_id', $user_id)->count();
-    
+            
             $visitors = Document::select(
                 DB::raw('SUM(status) as total_status'), 
                 DB::raw('SUM(pending) as total_pending'),
@@ -53,7 +58,6 @@ class HomeController extends Controller
                 ['pending', $pendingDocuments, 0],
                 ['invalid', $invalidDocuments, 0]
             ]; 
-    
             return view('user.dashboard', compact('totalDocuments', 'validDocuments', 'pendingDocuments', 'invalidDocuments', 'result'));
         }else{
             $totalDocuments = 0;

@@ -16,7 +16,11 @@ class Evidence extends Model
         'pdf',
         'status'
     ];
-
+    protected $casts = [
+        'image' => 'array',
+        'pdf' => 'array'
+    ];
+    
     public function document()
     {
         return $this->belongsTo(Document::class);

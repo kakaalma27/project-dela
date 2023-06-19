@@ -30,34 +30,47 @@ class EvidenceController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $$request->validate([
             'name' => 'required',
             'alamat' => 'required',
             'indikator' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pdf' => 'required|mimes:pdf|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pdf' => 'nullable|mimes:pdf|max:2048',
         ]);
     
+        $latestEvidence = Evidence::latest()->first();
+        $latestId = $latestEvidence ? $latestEvidence->id : 0;
+    
         $evidence = new Evidence;
+        $evidence->id = $latestId + 1;
         $evidence->name = $request->name;
         $evidence->alamat = $request->alamat;
         $evidence->indikator = $request->indikator;
+        $evidence->image = [];
     
-        if ($request->hasFile('image')) {
-            $evidence->image = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('assets', $evidence->image, 'public');
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            dd($image);
+            foreach ($images as $image) {
+                $imageFileName = time() . '_' . $image->getClientOriginalName();
+                $image->storeAs('public/assets', $imageFileName);
+                $evidence->image[] = $imageFileName;
+            }
         }
     
         if ($request->hasFile('pdf')) {
-            $evidence->pdf = $request->file('pdf')->getClientOriginalName();
+            $evidence->pdf = $request->file('pdf')->getClientOriginalExtension();
             $request->file('pdf')->storeAs('assets', $evidence->pdf, 'public');
         }
         
         
-
+        $latestEvidence = Document::latest()->first();
+        $latestId = $latestEvidence ? $latestEvidence->id : 0;
+            
         $evidence->save();
         $user = Auth::user();
         $document = new Document;
+        $document->id = $latestId + 1; // Memperbarui nomor urut
         $document->user()->associate($user);
         $document->save();
         $evidence->document()->associate($document);
@@ -114,6 +127,7 @@ class EvidenceController extends Controller
     {
         Evidence::find($id)->delete();
         Document::find($id)->delete();
+        
         return redirect()->route('evidence.index')
                         ->with('success','Product deleted successfully');
     }

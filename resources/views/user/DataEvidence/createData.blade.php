@@ -29,28 +29,36 @@
                         <input type="text" class="form-control" name="alamat" placeholder="Alamat">
                     </div>
                     <div class="mb-3">
-                        <div class="row align-items-start">
-                        <div class="col-md-4">
-                          <select id="domainSelect" name="domain" class="form-select"  onchange="updateIndicatorOptions()">
-                            <option value="">Pilih Domain</option>
-                            <option value="domain1">DOMAIN 1. Kebijakan Internal SPBE</option>
-                            <option value="domain2">DOMAIN 2. Tata Kelola SPBE</option>
-                          </select>
-                        </div>
-                        <div class="col-md-4">
-                          <select id="indicatorSelect" name="indikator" class="form-select">
-                            <option value="">Pilih Indikator</option>
-                          </select>
-                        </div>
-                      </div>
+                      <select name="indikator" class="form-control" onchange="getData()" onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
+                        <optgroup label="Group 1">
+                          <option value="1">Option 1.1</option>
+                          <option value="2">Option 1.2</option>
+                          <option value="3">Option 1.3</option>
+                        </optgroup>
+                        <optgroup label="Group 2">
+                          <option value="4">Option 2.1</option>
+                          <option value="5">Option 2.2</option>
+                          <option value="6">Option 2.3</option>
+                        </optgroup>
+                      </select>
                     </div>
+                    
+                    <script>
+                      function getData() {
+                        var selectElement = document.getElementsByName("indikator")[0];
+                        var selectedValue = selectElement.value;
+                        
+                        // Lakukan tindakan berdasarkan nilai yang dipilih
+                        console.log("Anda memilih opsi dengan nilai: " + selectedValue);
+                      }
+                    </script>
                     <div class="mb-3">
                         <strong>Image</strong>
-                        <input type="file" name="image" class="form-control" placeholder="image">
+                        <input type="file" name="images[]" class="form-control" placeholder="image" multiple>
                     </div>
                     <div class="mb-3">
                         <strong>PDF</strong>
-                        <input type="file" name="pdf" class="form-control" placeholder="image">
+                        <input type="file" name="pdf[]" class="form-control" placeholder="pdf" multiple>
                     </div>
                     <div class="d-grid gap-2">
                     <button class="btn btn-primary" type="submit">Save</button>
@@ -62,27 +70,3 @@
     </div>
 </div>      
 @endsection
-<script>
-  function updateIndicatorOptions() {
-    var domainSelect = document.getElementById("domainSelect");
-    var indicatorSelect = document.getElementById("indicatorSelect");
-    indicatorSelect.innerHTML = ""; // Hapus semua opsi indikator sebelumnya
-    
-    if (domainSelect.value === "domain1") {
-      var option1 = document.createElement("option");
-      option1.text = "Indikator 1 : Tingkat Kematangan Kebijakan Internal Arsitektur SPBE Instansi Pusat/Pemerintah Daerah";
-      option1.value = "Indikator 1 : Tingkat Kematangan Kebijakan Internal Arsitektur SPBE Instansi Pusat/Pemerintah Daerah";
-      indicatorSelect.add(option1);
-
-      var option2 = document.createElement("option");
-      option2.text = "Tingkat Kematangan 2";
-      option2.value = "indicator2";
-      indicatorSelect.add(option2);
-    } else if (domainSelect.value === "domain2") {
-      var optionX = document.createElement("option");
-      optionX.text = "Indikator X";
-      optionX.value = "indicatorX";
-      indicatorSelect.add(optionX);
-    }
-  }
-</script>

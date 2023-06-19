@@ -16,13 +16,14 @@
 	<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <link href='/style/nav.css' rel='stylesheet'>
 	<link href='/style/card.css' rel='stylesheet'>
+	<link href='/style/piechart.css' rel='stylesheet'>
 
   </head>
   <body>
 	<section id="sidebar">
 		<a href="{{ route('admin.home') }}" class="brand">
 			<i class='bx bxs-smile'></i>
-			<span class="text">Kominfo</span>
+			<span class="text">Aplikasi Monitoring SPBE Kabupaten Tasikmalaya</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="{{ request()->is('admin/dashboard*') ? 'active' : '' }}">
@@ -47,15 +48,18 @@
 			</ul>
 			<li>
 				<a class="logout" href="{{ route('logout') }}"
-				onclick="event.preventDefault();
-					document.getElementById('logout-form').submit();">
-					<i class='bx bxs-log-out-circle' ></i>
+					onclick="event.preventDefault();
+						if (confirm('Apakah Anda yakin?')) {
+							document.getElementById('logout-form').submit();
+						}">
+					<i class='bx bxs-log-out-circle'></i>
 					<span class="text">Logout</span>
 				</a>
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 					@csrf
 				</form>
 			</li>
+			
 		</ul>
 	</section>
 	

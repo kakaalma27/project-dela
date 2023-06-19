@@ -23,7 +23,7 @@
 	<section id="sidebar">
 		<a href="{{ route('home') }}" class="brand">
 			<i class='bx bxs-smile'></i>
-			<span class="text">Kominfo</span>
+			<span class="text">Aplikasi Monitoring SPBE Kabupaten Tasikmalaya</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="{{ request()->is('user/dashboard*') ? 'active' : '' }}">

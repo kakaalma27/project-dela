@@ -18,19 +18,19 @@ class CreateUserSeeder extends Seeder
         $users = [
             [
                'name'=>'User',
-               'email'=>'user@cambotutorial.com',
+               'email'=>'user@xkill.com',
                'role'=> 0,
                'password'=> bcrypt('123456'),
             ],
             [
                'name'=>'Editor',
-               'email'=>'editor@cambotutorial.com',
+               'email'=>'editor@xkill.com',
                'role'=> 1,
                'password'=> bcrypt('123456'),
             ],
             [
                'name'=>'Admin',
-               'email'=>'admin@cambotutorial.com',
+               'email'=>'admin@xkill.com',
                'role'=> 2,
                'password'=> bcrypt('123456'),
             ],

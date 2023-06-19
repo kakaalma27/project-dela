@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('alamat');
             $table->string('indikator');
-            $table->string('domain');
-            $table->text('image');
-            $table->text('pdf');
+            $table->string('image')->nullable();
+            $table->string('pdf')->nullable();
+
             $table->timestamps();
         });
+
     }
 
     /**
